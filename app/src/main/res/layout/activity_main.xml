@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <ImageView
+        android:onClick="toActivityStatistical"
         android:id="@+id/imgThongKe"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -27,6 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imgThongKe" />
 
     <ImageView
+        android:onClick="toActivityCategory"
         android:id="@+id/imgTheLoai"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -34,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cateicon" />
+        app:srcCompat="@drawable/category" />
 
     <TextView
         android:id="@+id/tvTheLoai"
@@ -47,6 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imgTheLoai" />
 
     <ImageView
+        android:onClick="toActivityBill"
         android:id="@+id/imgHoaDon"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -77,6 +80,7 @@
         app:srcCompat="@drawable/money_icon" />
 
     <TextView
+        android:onClick="toActivitySelling"
         android:id="@+id/tvSachBanChay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,13 +91,14 @@
         app:layout_constraintTop_toBottomOf="@+id/imgSachBanChay" />
 
     <ImageView
+        android:onClick="toActivityBooks"
         android:id="@+id/imgSach"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="64dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSachBanChay"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/bookicon" />
 
     <TextView
@@ -107,6 +112,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imgSach" />
 
     <ImageView
+        android:onClick="toActivityUser"
         android:id="@+id/imgNguoiDung"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -124,7 +130,7 @@
         app:layout_constraintGuide_begin="205dp" />
 
     <TextView
-        android:id="@+id/tvSachBanChay"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

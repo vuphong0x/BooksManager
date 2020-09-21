@@ -5,31 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="24dp"
     tools:context=".LoginActivity">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginTop="64dp"
-        android:src="@drawable/logo" />
+        android:src="@drawable/user" />
 
-    <EditText
-        android:id="@+id/edtUserName"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
-        android:hint="User Name" />
+        android:layout_marginVertical="8dp">
 
-    <EditText
-        android:id="@+id/edtPassword"
+        <EditText
+            android:id="@+id/edtUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="User Name"
+            android:textColorHint="@color/colorPrimaryDark" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
-        android:hint="Password" />
+        android:layout_marginVertical="8dp">
+
+        <EditText
+            android:id="@+id/edtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:textColorHint="@color/colorPrimaryDark" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
-        android:id="@+id/cbLuuMatKhau"
+        android:id="@+id/cbRemember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lưu mật khẩu" />
@@ -37,21 +49,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginVertical="8dp">
+        android:layout_marginVertical="8dp"
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnDangNhap"
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
             android:layout_weight="1"
-            android:text="Đăng Nhập" />
+            android:background="@drawable/button_rounded"
+            android:text="Đăng Nhập"
+            android:textColor="#fff"
+            android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnHuy"
+            android:id="@+id/btnCancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
             android:layout_weight="1"
-            android:text="Hủy" />
+            android:background="@drawable/button_rounded"
+            android:text="Hủy"
+            android:textColor="#fff"
+            android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>
