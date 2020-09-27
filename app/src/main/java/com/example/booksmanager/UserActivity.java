@@ -1,56 +1,65 @@
 package com.example.booksmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import com.example.booksmanager.DAO.NguoiDungDAO;
-import com.example.booksmanager.Model.NguoiDung;
+import com.example.booksmanager.Fragment.ItemFragment;
+import com.example.booksmanager.Fragment.UserFragment;
 
 public class UserActivity extends AppCompatActivity {
-    Button btnThemNguoiDung;
-    NguoiDungDAO nguoiDungDAO;
-    EditText edtUser, edtPass, edtRepass, edtPhone, edtFullname;
+    Fragment fragment;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-        setTitle("Thêm Người Dùng");
-        btnThemNguoiDung = findViewById(R.id.btnAddUser);
-        edtUser = findViewById(R.id.edUserName);
-        edtPass = findViewById(R.id.edPassword);
-        edtRepass = findViewById(R.id.edRePassword);
-        edtPhone = findViewById(R.id.edPhone);
-        edtFullname = findViewById(R.id.edFullName);
+
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Người Dùng");
+        toolbar.setBackground(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
+        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        fragment = new ItemFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
     }
 
-    public void addUser(View view) {
-        nguoiDungDAO = new NguoiDungDAO(UserActivity.this);
-        NguoiDung nguoiDung = new NguoiDung(
-                edtUser.getText().toString(),
-                edtPass.getText().toString(),
-                edtPhone.getText().toString(),
-                edtFullname.getText().toString()
-        );
-        try {
-            if (nguoiDungDAO.insertNguoiDung(nguoiDung) > 0) {
-                Toast.makeText(getApplicationContext(), "User added successfully", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getApplicationContext(), "User add failed", Toast.LENGTH_SHORT).show();
-            }
-        } catch (Exception e) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            case R.id.menu_addUser:
+                fragment = new UserFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
+                break;
+            case R.id.menu_changePassword:
+                fragment = new ChangePasswordFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
+                break;
+            case R.id.menu_logout:
+                onBackPressed();
+                break;
+            default:
+                break;
         }
-    }
 
-    public void showUsersList(View view) {
-    }
-
-    public void cancel(View view) {
-        finish();
+        return super.onOptionsItemSelected(item);
     }
 }

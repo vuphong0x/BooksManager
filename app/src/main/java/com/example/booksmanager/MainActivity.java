@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toActivityCategory(View view) {
+        intent = new Intent(this, CategoryActivity.class);
+        startActivity(intent);
     }
 
     public void toActivityBill(View view) {
