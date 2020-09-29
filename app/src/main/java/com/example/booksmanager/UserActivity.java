@@ -4,12 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.booksmanager.Fragment.ItemFragment;
+import com.example.booksmanager.Fragment.ChangePasswordFragment;
 import com.example.booksmanager.Fragment.UserFragment;
 
 public class UserActivity extends AppCompatActivity {
@@ -21,6 +22,7 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
+        // Setup Toolbar
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Người Dùng");
         toolbar.setBackground(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
@@ -28,8 +30,8 @@ public class UserActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        fragment = new ItemFragment();
+        // Set default Fragment
+        fragment = new UserFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
     }
 
@@ -45,16 +47,14 @@ public class UserActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 break;
-            case R.id.menu_addUser:
-                fragment = new UserFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
-                break;
             case R.id.menu_changePassword:
+                toolbar.setTitle("Đổi Mật Khẩu");
                 fragment = new ChangePasswordFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
                 break;
             case R.id.menu_logout:
-                onBackPressed();
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;

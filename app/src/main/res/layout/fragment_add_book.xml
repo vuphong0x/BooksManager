@@ -1,30 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:gravity="center"
-    android:padding="16dp"
-    tools:context="com.example.booksmanager.CategoryActivity">
+    android:paddingHorizontal="16dp">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/category" />
+        android:src="@drawable/book" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/edtCategoryCode"
+            android:id="@+id/edtBookCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mã Thể Loại"
+            android:hint="Mã Sách"
             android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edtBookName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên Sách"
+            android:inputType="textCapCharacters" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -32,10 +47,22 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/edtCategoryName"
+            android:id="@+id/edtAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tên Thể Loại"
+            android:hint="Tác Giả"
+            android:inputType="textCapCharacters" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edtNXB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhà Xuất Bản"
             android:inputType="textCapCharacters" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -47,8 +74,8 @@
             android:id="@+id/edtLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Vị Trí"
-            android:inputType="text" />
+            android:hint="Giá Bìa"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -56,10 +83,11 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/edtDescription"
+            android:id="@+id/edtNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mô Tả" />
+            android:hint="Số Lượng"
+            android:inputType="number"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -78,8 +106,7 @@
             android:textColor="#fff"
             android:textStyle="bold"
             android:background="@drawable/button_rounded"
-            android:text="Thêm"
-            android:onClick="addCategory"/>
+            android:text="Thêm" />
 
         <Button
             android:id="@+id/btnCancel"

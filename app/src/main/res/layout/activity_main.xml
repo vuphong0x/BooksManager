@@ -7,11 +7,11 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:onClick="toActivityStatistical"
         android:id="@+id/imgThongKe"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="64dp"
+        android:onClick="toActivityStatistical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvHoaDon"
@@ -28,11 +28,11 @@
         app:layout_constraintTop_toBottomOf="@+id/imgThongKe" />
 
     <ImageView
-        android:onClick="toActivityCategory"
         android:id="@+id/imgTheLoai"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="64dp"
+        android:onClick="toActivityCategory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent"
@@ -49,11 +49,11 @@
         app:layout_constraintTop_toBottomOf="@+id/imgTheLoai" />
 
     <ImageView
-        android:onClick="toActivityBill"
         android:id="@+id/imgHoaDon"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="64dp"
+        android:onClick="toActivityBill"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvTheLoai"
@@ -74,13 +74,13 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="64dp"
+        android:onClick="toActivitySelling"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSach"
         app:srcCompat="@drawable/money_icon" />
 
     <TextView
-        android:onClick="toActivitySelling"
         android:id="@+id/tvSachBanChay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,15 +91,15 @@
         app:layout_constraintTop_toBottomOf="@+id/imgSachBanChay" />
 
     <ImageView
-        android:onClick="toActivityBooks"
         android:id="@+id/imgSach"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="64dp"
+        android:onClick="toActivityBooks"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/bookicon" />
+        app:srcCompat="@drawable/book" />
 
     <TextView
         android:id="@+id/tvSach"
@@ -112,11 +112,11 @@
         app:layout_constraintTop_toBottomOf="@+id/imgSach" />
 
     <ImageView
-        android:onClick="toActivityUser"
         android:id="@+id/imgNguoiDung"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="64dp"
+        android:onClick="toActivityUser"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -127,7 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="205dp" />
+        app:layout_constraintGuide_end="206dp" />
 
     <TextView
         android:id="@+id/textView"

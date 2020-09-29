@@ -9,10 +9,12 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CategoryActivity"></activity>
-        <activity android:name=".ListNguoiDungActivity" />
+        <activity android:name=".StatisticalActivity"></activity>
+        <activity android:name=".TopSellingActivity" />
+        <activity android:name=".BillActivity" />
+        <activity android:name=".BookActivity" />
+        <activity android:name=".CategoryActivity" />
         <activity android:name=".UserActivity" />
-        <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

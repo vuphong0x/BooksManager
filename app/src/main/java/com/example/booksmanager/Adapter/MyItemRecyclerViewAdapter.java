@@ -1,4 +1,4 @@
-package com.example.booksmanager;
+package com.example.booksmanager.Adapter;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.booksmanager.R;
 import com.example.booksmanager.dummy.DummyContent.DummyItem;
 
 import java.util.List;

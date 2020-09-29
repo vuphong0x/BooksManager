@@ -64,4 +64,16 @@ public class NguoiDungDAO {
         return 1;
     }
 
+    public long updateUser(NguoiDung nguoiDung, int position) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", nguoiDung.getName());
+        contentValues.put("numberPhone", nguoiDung.getNumberPhone());
+        contentValues.put("userName", nguoiDung.getUserName());
+        contentValues.put("password", nguoiDung.getPassword());
+        return db.update(TABLE_NAME, contentValues, "ID=?", new String[]{String.valueOf(position)});
+    }
+
+    public void deleteUser(String userName) {
+        db.delete(TABLE_NAME, "userName = ?", new String[]{userName});
+    }
 }
