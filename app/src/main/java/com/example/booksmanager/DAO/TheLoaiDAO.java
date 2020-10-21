@@ -8,23 +8,22 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.booksmanager.Database.Database;
-import com.example.booksmanager.Model.NguoiDung;
-import com.example.booksmanager.Model.TheLoaiSach;
+import com.example.booksmanager.Model.TheLoai;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class TheLoaiDAO {
     private SQLiteDatabase db;
     private SQLiteOpenHelper dbHelper;
-    public static final String TABLE_NAME = "TheLoaiSach";
-    public static final String TAG = "TAG_TheLoaiSach";
+
+    public static final String TABLE_NAME = "TheLoai";
+    public static final String TAG = "TAG_TheLoai";
     public static final String SQL_THE_LOAI = "CREATE TABLE " + TABLE_NAME + "(" +
             "maTheLoai TEXT PRIMARY KEY, " +
             "tenTheLoai text," +
             "moTa text," +
-            "viTri text" +
+            "viTri int" +
             ");";
 
     public TheLoaiDAO(Context context) {
@@ -32,37 +31,89 @@ public class TheLoaiDAO {
         db = dbHelper.getWritableDatabase();
     }
 
-    public int insertTheLoai(TheLoaiSach theLoaiSach) {
+    public int insertCategory(TheLoai theLoai) {
         ContentValues values = new ContentValues();
-        values.put("maTheLoai", theLoaiSach.getMaTheLoai());
-        values.put("tenTheLoai", theLoaiSach.getTenTheLoai());
-        values.put("moTa", theLoaiSach.getMoTa());
-        values.put("viTri", theLoaiSach.getViTri());
+        values.put("maTheLoai", theLoai.getMaTheLoai());
+        values.put("tenTheLoai", theLoai.getTenTheLoai());
+        values.put("moTa", theLoai.getMoTa());
+        values.put("viTri", theLoai.getViTri());
 
-        try {
-            if (db.insert(TABLE_NAME, null, values) < 0) {
+        if (checkPrimaryKey(theLoai.getMaTheLoai())) {
+            int result = db.update(TABLE_NAME, values, "maTheLoai=?", new String[]{theLoai.getMaTheLoai()});
+            if (result == 0) {
                 return -1;
             }
-        } catch (Exception e) {
-            Log.e(TAG, e.toString());
+            return 1;
+        } else {
+            try {
+                if (db.insert(TABLE_NAME, null, values) == -1) {
+                    return -1;
+                }
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
         }
         return 1;
     }
 
-    public List<TheLoaiSach> getAllCategory() {
-        List<TheLoaiSach> theLoaiSachList = new ArrayList<>();
+    public List<TheLoai> getAllCategory() {
+        List<TheLoai> theLoaiList = new ArrayList<>();
         Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null, null);
         cursor.moveToFirst();
         while (cursor.isAfterLast() == false) {
-            TheLoaiSach theLoaiSach = new TheLoaiSach();
-            theLoaiSach.setMaTheLoai(cursor.getString(cursor.getColumnIndex("maTheLoai")));
-            theLoaiSach.setTenTheLoai(cursor.getString(cursor.getColumnIndex("tenTheLoai")));
-            theLoaiSach.setViTri(cursor.getString(cursor.getColumnIndex("viTri")));
-            theLoaiSach.setMoTa(cursor.getString(cursor.getColumnIndex("moTa")));
-            theLoaiSachList.add(theLoaiSach);
+            TheLoai theLoai = new TheLoai();
+            theLoai.setMaTheLoai(cursor.getString(cursor.getColumnIndex("maTheLoai")));
+            theLoai.setTenTheLoai(cursor.getString(cursor.getColumnIndex("tenTheLoai")));
+            theLoai.setViTri(cursor.getInt(cursor.getColumnIndex("viTri")));
+            theLoai.setMoTa(cursor.getString(cursor.getColumnIndex("moTa")));
+            theLoaiList.add(theLoai);
             cursor.moveToNext();
         }
         cursor.close();
-        return theLoaiSachList;
+        return theLoaiList;
+    }
+
+    // Update
+    public int updateCategory(TheLoai theLoai) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("maTheLoai", theLoai.getMaTheLoai());
+        contentValues.put("tenTheLoai", theLoai.getTenTheLoai());
+        contentValues.put("moTa", theLoai.getMoTa());
+        contentValues.put("viTri", theLoai.getViTri());
+        int result = db.update(TABLE_NAME, contentValues, "maTheLoai=?", new String[]{theLoai.getMaTheLoai()});
+        if (result == 0) {
+            return -1;
+        }
+        return 1;
+    }
+
+    // Delete
+    public int deleteCategory (String maTheLoai) {
+        int result = db.delete(TABLE_NAME, "maTheLoai=?", new String[]{maTheLoai});
+        if (result == 0) {
+            return -1;
+        }
+        return 1;
+    }
+
+    // Check
+    public boolean checkPrimaryKey(String strPrimaryKey) {
+        String[] columns = {"maTheLoai"};
+        String selection = "maTheLoai=?";
+        String[] selectionArgs = {strPrimaryKey};
+        Cursor cursor = null;
+        try {
+            cursor = db.query(TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+            cursor.moveToFirst();
+            int i = cursor.getCount();
+            cursor.close();
+            if (i <= 0) {
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

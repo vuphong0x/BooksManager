@@ -5,15 +5,48 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
+    android:padding="16dp"
     tools:context="com.example.booksmanager.BillActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:theme="@style/ToolbarColoredBackArrow"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"/>
-    <FrameLayout
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp">
+
+        <EditText
+            android:id="@+id/edtMaHoaDon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mã hóa đơn"
+            android:textColorHint="@color/colorPrimaryDark" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/frame_container"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="DD-MM-YYYY"
+            android:id="@+id/edtNgayMua"
+            android:layout_weight="4"
+            android:textSize="18sp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Chọn"
+            android:onClick="datePicker"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnAdd"
+        android:text="Thêm"
+        android:onClick="addBill"/>
 </LinearLayout>

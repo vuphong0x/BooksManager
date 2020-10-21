@@ -47,4 +47,14 @@ public class NguoiDung {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "NguoiDung{" +
+                "name='" + name + '\'' +
+                ", numberPhone='" + numberPhone + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

@@ -26,6 +26,7 @@
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hôm nay"
@@ -34,6 +35,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tvMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tháng này"
@@ -42,6 +44,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tvYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Năm nay"

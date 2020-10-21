@@ -1,15 +1,15 @@
 package com.example.booksmanager.Model;
 
-public class TheLoaiSach {
+public class TheLoai {
     private String maTheLoai;
     private String tenTheLoai;
     private String moTa;
-    private String viTri;
+    private int viTri;
 
-    public TheLoaiSach() {
+    public TheLoai() {
     }
 
-    public TheLoaiSach(String maTheLoai, String tenTheLoai, String moTa, String viTri) {
+    public TheLoai(String maTheLoai, String tenTheLoai, String moTa, int viTri) {
         this.maTheLoai = maTheLoai;
         this.tenTheLoai = tenTheLoai;
         this.moTa = moTa;
@@ -40,11 +40,21 @@ public class TheLoaiSach {
         this.moTa = moTa;
     }
 
-    public String getViTri() {
+    public int getViTri() {
         return viTri;
     }
 
-    public void setViTri(String viTri) {
+    public void setViTri(int viTri) {
         this.viTri = viTri;
+    }
+
+    @Override
+    public String toString() {
+        return "TheLoai{" +
+                "maTheLoai='" + maTheLoai + '\'' +
+                ", tenTheLoai='" + tenTheLoai + '\'' +
+                ", moTa='" + moTa + '\'' +
+                ", viTri=" + viTri +
+                '}';
     }
 }

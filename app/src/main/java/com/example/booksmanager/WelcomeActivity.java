@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class WelcomeActivity extends AppCompatActivity {
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 1500;
     private Animation topAnim, bottomAnim;
     ImageView image;
     private TextView tvLogo, tvSlogan;

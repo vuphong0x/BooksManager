@@ -1,50 +1,118 @@
 package com.example.booksmanager;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-
-import android.graphics.drawable.ColorDrawable;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-import com.example.booksmanager.Fragment.BookFragment;
-import com.example.booksmanager.Fragment.UserFragment;
-import com.example.booksmanager.Fragment.AddUserFragment;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.booksmanager.DAO.SachDAO;
+import com.example.booksmanager.DAO.TheLoaiDAO;
+import com.example.booksmanager.Model.Sach;
+import com.example.booksmanager.Model.TheLoai;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class BookActivity extends AppCompatActivity {
-    Toolbar toolbar;
-    Fragment fragment;
+    SachDAO sachDAO;
+    TheLoaiDAO theLoaiDAO;
+    Spinner spinner;
+    EditText edtMaSach, edtTenSach, edtNXB, edtTacGia, edtGiaBia, edtSoluong;
+    String maTheLoai = "";
+    List<TheLoai> listTheLoai = new ArrayList<>();
+    List<String> listTenTheLoai = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
 
-        // Setup Toolbar
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Sách");
-        toolbar.setBackground(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
-        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Thêm Sách");
+        spinner = findViewById(R.id.spinner);
+        getTheLoai();
+        edtMaSach = findViewById(R.id.edtBookCode);
+        edtTenSach = findViewById(R.id.edtBookName);
+        edtNXB = findViewById(R.id.edtNXB);
+        edtTacGia = findViewById(R.id.edtAuthor);
+        edtGiaBia = findViewById(R.id.edtPrice);
+        edtSoluong = findViewById(R.id.edtNumber);
 
-        // Set default Fragment
-        fragment = new BookFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                maTheLoai = listTheLoai.get(spinner.getSelectedItemPosition()).getMaTheLoai();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            edtMaSach.setText(bundle.getString("MaSach"));
+            String maTheLoai = bundle.getString("MaTheLoai");
+            edtTenSach.setText(bundle.getString("MaSach"));
+            edtNXB.setText(bundle.getString("MaSach"));
+            edtTacGia.setText(bundle.getString("MaSach"));
+            edtSoluong.setText(bundle.getString("MaSach"));
+            spinner.setSelection(checkPositionCategory(maTheLoai));
+        }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-            default:
-                break;
+    public void getTheLoai() {
+        theLoaiDAO = new TheLoaiDAO(this);
+        listTheLoai = theLoaiDAO.getAllCategory();
+        for (TheLoai theLoai : listTheLoai) {
+            listTenTheLoai.add(theLoai.getTenTheLoai());
         }
+        ArrayAdapter<String> dataApdater = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, listTenTheLoai);
+        dataApdater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataApdater);
+    }
 
-        return super.onOptionsItemSelected(item);
+    public void addBook(View view) {
+        String maSach = edtMaSach.getText().toString();
+        String tenSach = edtTenSach.getText().toString();
+        String tacGia = edtTacGia.getText().toString();
+        String NXB = edtNXB.getText().toString();
+        double giaBia = Double.parseDouble(edtGiaBia.getText().toString());
+        int soLuong = Integer.parseInt(edtSoluong.getText().toString());
+
+        sachDAO = new SachDAO(this);
+        Sach sach = new Sach(maSach, maTheLoai, tenSach, tacGia, NXB, giaBia, soLuong);
+        try {
+            if (sachDAO.insertBook(sach) > 0) {
+                Toast.makeText(this, "Thêm thành công", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Log.e("Error", e.toString());
+        }
+    }
+
+    public void show(View view) {
+        finish();
+    }
+
+    public int checkPositionCategory(String maTheLoai) {
+        for (int i = 0; i < listTheLoai.size(); i++) {
+            if (maTheLoai.equals(listTheLoai.get(i).getMaTheLoai())) {
+                return i;
+            }
+        }
+        return 0;
     }
 }

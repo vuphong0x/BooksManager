@@ -13,7 +13,7 @@
         android:layout_height="90dp">
 
         <ImageView
-            android:id="@+id/imgAvatar"
+            android:id="@+id/imgIcon"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="32dp"
@@ -31,32 +31,36 @@
             android:layout_marginLeft="24dp"
             android:orientation="vertical"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/imgAvatar"
+            card_view:layout_constraintStart_toEndOf="@+id/imgIcon"
             card_view:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/tvMaSach"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Book Code"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvSoLuong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Number"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvGiaSach"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Price"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvThanhTien"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Into Money"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
         <ImageView

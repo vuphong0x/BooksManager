@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.booksmanager.DAO.HoaDonChiTietDAO;
 import com.example.booksmanager.DAO.HoaDonDAO;
 import com.example.booksmanager.DAO.NguoiDungDAO;
 import com.example.booksmanager.DAO.SachDAO;
@@ -23,6 +24,7 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(HoaDonDAO.SQL_HOA_DON);
         db.execSQL(SachDAO.SQL_SACH);
         db.execSQL(TheLoaiDAO.SQL_THE_LOAI);
+        db.execSQL(HoaDonChiTietDAO.SQL_HOA_DON_CHI_TIET);
     }
 
     @Override
@@ -31,5 +33,8 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + HoaDonDAO.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + SachDAO.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TheLoaiDAO.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + HoaDonChiTietDAO.TABLE_NAME);
+
+        onCreate(db);
     }
 }

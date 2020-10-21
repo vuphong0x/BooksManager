@@ -1,20 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context="com.example.booksmanager.BookActivity">
+    android:paddingHorizontal="16dp"
+    tools:context=".BookActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/ToolbarColoredBackArrow" />
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/book" />
 
-    <FrameLayout
-        android:id="@+id/frame_container"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edtBookCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mã Sách"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edtBookName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên Sách"
+            android:inputType="textCapCharacters" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edtAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tác Giả"
+            android:inputType="textCapCharacters" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edtNXB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhà Xuất Bản"
+            android:inputType="textCapCharacters" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edtPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Giá Bìa"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edtNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Số Lượng"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_rounded"
+            android:text="Thêm"
+            android:onClick="addBook"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_rounded"
+            android:text="Huỷ"
+            android:onClick="show"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnShowBook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_rounded"
+        android:text="Show"
+        android:onClick="show"
+        android:textColor="#fff"
+        android:textStyle="bold" />
 </LinearLayout>

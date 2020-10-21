@@ -3,21 +3,23 @@ package com.example.booksmanager.Model;
 public class Sach {
     private String maSach;
     private String maTheLoai;
-    private String tieuDe;
+    private String tenSach;
     private String tacGia;
-    private String soLuongTonKho;
-    private String nhaXuatBan;
+    private String NXB;
+    private double giaBia;
+    private int soLuong;
 
     public Sach() {
     }
 
-    public Sach(String maSach, String maTheLoai, String tieuDe, String tacGia, String soLuongTonKho, String nhaXuatBan) {
+    public Sach(String maSach, String maTheLoai, String tenSach, String tacGia, String NXB, double giaBia, int soLuong) {
         this.maSach = maSach;
         this.maTheLoai = maTheLoai;
-        this.tieuDe = tieuDe;
+        this.tenSach = tenSach;
         this.tacGia = tacGia;
-        this.soLuongTonKho = soLuongTonKho;
-        this.nhaXuatBan = nhaXuatBan;
+        this.NXB = NXB;
+        this.giaBia = giaBia;
+        this.soLuong = soLuong;
     }
 
     public String getMaSach() {
@@ -36,12 +38,12 @@ public class Sach {
         this.maTheLoai = maTheLoai;
     }
 
-    public String getTieuDe() {
-        return tieuDe;
+    public String getTenSach() {
+        return tenSach;
     }
 
-    public void setTieuDe(String tieuDe) {
-        this.tieuDe = tieuDe;
+    public void setTenSach(String tenSach) {
+        this.tenSach = tenSach;
     }
 
     public String getTacGia() {
@@ -52,19 +54,40 @@ public class Sach {
         this.tacGia = tacGia;
     }
 
-    public String getSoLuongTonKho() {
-        return soLuongTonKho;
+    public String getNXB() {
+        return NXB;
     }
 
-    public void setSoLuongTonKho(String soLuongTonKho) {
-        this.soLuongTonKho = soLuongTonKho;
+    public void setNXB(String NXB) {
+        this.NXB = NXB;
     }
 
-    public String getNhaXuatBan() {
-        return nhaXuatBan;
+    public double getGiaBia() {
+        return giaBia;
     }
 
-    public void setNhaXuatBan(String nhaXuatBan) {
-        this.nhaXuatBan = nhaXuatBan;
+    public void setGiaBia(double giaBia) {
+        this.giaBia = giaBia;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+
+    @Override
+    public String toString() {
+        return "Sach{" +
+                "maSach='" + maSach + '\'' +
+                ", maTheLoai='" + maTheLoai + '\'' +
+                ", tenSach='" + tenSach + '\'' +
+                ", tacGia='" + tacGia + '\'' +
+                ", NXB='" + NXB + '\'' +
+                ", giaBia=" + giaBia +
+                ", soLuong=" + soLuong +
+                '}';
     }
 }

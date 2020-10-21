@@ -1,65 +1,72 @@
 package com.example.booksmanager;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import com.example.booksmanager.Fragment.ChangePasswordFragment;
-import com.example.booksmanager.Fragment.UserFragment;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.booksmanager.DAO.NguoiDungDAO;
+import com.example.booksmanager.Model.NguoiDung;
 
 public class UserActivity extends AppCompatActivity {
-    Fragment fragment;
-    Toolbar toolbar;
+    Button btnThemNguoiDung;
+    NguoiDungDAO nguoiDungDAO;
+    EditText edtUserName, edtPass, edtRePass, edtPhone, edtName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        // Setup Toolbar
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Người Dùng");
-        toolbar.setBackground(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
-        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        // Set default Fragment
-        fragment = new UserFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
+        setTitle("Thêm Người Dùng");
+        btnThemNguoiDung = findViewById(R.id.btnAddUser);
+        edtUserName = findViewById(R.id.edtUserName);
+        edtPass = findViewById(R.id.edtPassword);
+        edtPhone = findViewById(R.id.edtPhone);
+        edtName = findViewById(R.id.edtFullName);
+        edtRePass = findViewById(R.id.edtRePassword);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-            case R.id.menu_changePassword:
-                toolbar.setTitle("Đổi Mật Khẩu");
-                fragment = new ChangePasswordFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
-                break;
-            case R.id.menu_logout:
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-                break;
-            default:
-                break;
+    public void addUser(View view) {
+        nguoiDungDAO = new NguoiDungDAO(this);
+        NguoiDung user = new NguoiDung(edtUserName.getText().toString(), edtPass.getText().toString(),
+                edtPhone.getText().toString(), edtName.getText().toString());
+        try {
+            if (validateForm() > 0) {
+                if (nguoiDungDAO.insertNguoiDung(user) > 0) {
+                    Toast.makeText(this, "Thêm thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
+                }
+            }
+        } catch (Exception e) {
+            Log.e("Error", e.toString());
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    public int validateForm() {
+        int check = 1;
+        if (edtUserName.getText().length() == 0 || edtName.getText().length() == 0 ||
+                edtPhone.getText().length() == 0 || edtPass.getText().length() == 0
+                || edtRePass.getText().length() == 0) {
+            Toast.makeText(this, "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            check = -1;
+        } else {
+            String pass = edtPass.getText().toString();
+            String rePass = edtRePass.getText().toString();
+            if (!pass.equals(rePass)) {
+                Toast.makeText(this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
+                check = -1;
+            }
+        }
+        return check;
+    }
+
+    public void showUser(View view) {
+        finish();
     }
 }
